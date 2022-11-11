@@ -8,14 +8,21 @@ const showBiography = ref(false)
     <HeroImage :image-url="hero.images.md" @showBiography="showBiography = true" />
 
     <HeroStats :name="hero.name" :stats="hero.powerstats" :alignment="hero.biography.alignment" />
-    <HeroModal v-if="showBiography" @hideBiography="showBiography = false" />
+    <HeroModal v-if="showBiography" :name="hero.name" :alignment="hero.biography.alignment" @hideBiography="showBiography = false" />
   </div>
 </template>
 
 <style scoped>
     .card {
-      grid-template-columns: 1fr 1.2fr;
-        width: 330px;
-        height: 230px;
+
+      border: 1px solid grey;
+      grid-template-columns: 1fr 1fr;
+      margin: auto;
+      width: 330px;
+        height: auto;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        border-radius: 0.5rem;
+
     }
 </style>

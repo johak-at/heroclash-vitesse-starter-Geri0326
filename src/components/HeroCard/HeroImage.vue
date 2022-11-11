@@ -6,3 +6,12 @@ const emits = defineEmits(['showBiography'])
 <template>
   <img :src="`https://raw.githubusercontent.com/akabab/superhero-api/master/.backup/${imageUrl}`" alt="Hero Image" @click="emits('showBiography')">
 </template>
+
+<style>
+img{
+  border-bottom-left-radius: 7px;
+  border-top-left-radius: 7px;
+  display: block;
+    vertical-align: middle;
+}
+</style>
