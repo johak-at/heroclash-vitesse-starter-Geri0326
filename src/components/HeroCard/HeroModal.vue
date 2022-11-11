@@ -1,5 +1,5 @@
 <script setup>
-const props = defineProps(['name', 'alignment'])
+const props = defineProps(['name', 'alignment', 'bio', 'appearance', 'work', 'connections'])
 const emits = defineEmits(['hideBiography'])
 // get hero name and alignment
 const heroName = ref(props.name)
@@ -14,8 +14,20 @@ const heroAlignment = ref(props.alignment)
         <h2>{{ heroName }}</h2>
       </div>
       <div class="modal-body">
-        <p>Some text in the Modal Body</p>
-        <p>Some other text...</p>
+        <ul>
+          <li v-for="(value, key) in bio" :key="key">
+            {{ key }}:{{ '\xa0' }}{{ '\xa0' }}{{ '\xa0' }}{{ value }}
+          </li><br>
+          <li v-for="(value, key) in appearance" :key="key">
+            {{ key }}:{{ '\xa0' }}{{ '\xa0' }}{{ '\xa0' }}{{ value }}
+          </li><br>
+          <li v-for="(value, key) in work" :key="key">
+            {{ key }}:{{ '\xa0' }}{{ '\xa0' }}{{ '\xa0' }}{{ value }}
+          </li><br>
+          <li v-for="(value, key) in connections" :key="key">
+            {{ key }}:{{ '\xa0' }}{{ '\xa0' }}{{ '\xa0' }}{{ value }}
+          </li>
+        </ul>
       </div>
       <div class="modal-footer">
         <h3>Alignment: {{ heroAlignment }}</h3>
@@ -32,9 +44,29 @@ const heroAlignment = ref(props.alignment)
   width: 650px;
   background-color: #2b2929;
   text-align: left;
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.5s
 
 }
-.modal-body {padding: 2px 16px;}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+.modal-body {
+  color: white;
+  font-size: 13px;
+  padding-top: 10px;
+  padding-left: 8px;
+}
 .modal {
   position: fixed;
   z-index: 1;
@@ -49,17 +81,23 @@ const heroAlignment = ref(props.alignment)
 }
 
 .modal-header {
-  padding: 2px 16px;
+  padding-left: 8px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
   background: linear-gradient(to right, rgb(182, 244, 146), rgb(51, 139, 147));
   color: white;
+  font-weight: bold;
+  font-size: 20px;
 }
 
 .modal-footer {
-  padding: 2px 16px;
+  padding-left: 8px;
+  padding-top: 6px;
+  padding-bottom: 6px;
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
   border-top-left-radius: 0px;
