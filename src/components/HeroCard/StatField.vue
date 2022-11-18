@@ -30,7 +30,7 @@ const icon = computed (() => {
 .stats{
   vertical-align: middle;
   border: 2px solid white;
-  margin-bottom: 9px;
+  margin-bottom: 10px;
     color: white;
     font-family: "DM Sans",ui-sans-serif;
     }

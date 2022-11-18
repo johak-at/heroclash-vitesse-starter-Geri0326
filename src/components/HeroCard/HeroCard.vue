@@ -18,12 +18,12 @@ const showBiography = ref(false)
 <style scoped>
     .card {
 
-      border: 1px solid grey;
+      border: 1px solid #F3F4F6;
       grid-template-columns: 1fr 1fr;
       margin: auto;
       width: 330px;
         height: auto;
-        margin-top: 20px;
+        margin-top: 200px;
         margin-bottom: 20px;
         border-radius: 0.5rem;
 

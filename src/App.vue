@@ -24,3 +24,10 @@ useHead({
 <template>
   <RouterView />
 </template>
+
+<style>
+@font-face {
+  font-family: "action-comics-black";
+  src: local("action-comics-black"),   url(./fonts/ActionComics/action-comics-black.ttf) format("truetype");
+}
+</style>
