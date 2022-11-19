@@ -30,4 +30,8 @@ useHead({
   font-family: "action-comics-black";
   src: local("action-comics-black"),   url(./fonts/ActionComics/action-comics-black.ttf) format("truetype");
 }
+@font-face {
+  font-family: "ComicKings";
+  src: local("ComicKings"),   url(./fonts/ComicKings/ComicKings.ttf) format("truetype");
+}
 </style>

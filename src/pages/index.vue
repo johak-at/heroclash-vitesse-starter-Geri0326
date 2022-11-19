@@ -3,9 +3,6 @@
 </script>
 
 <template>
-  <p>
-    <a href="http://127.0.0.1:3333/"> <img src="heroclash-logo-lang.png" alt="heroclash logo" class="Logo"></a>
-  </p>
   <RouterLink to="/gallery">
     <div>
       Gallery
