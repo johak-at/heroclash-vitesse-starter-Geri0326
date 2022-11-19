@@ -11,7 +11,7 @@ const heroAlignment = ref(props.alignment)
     <!-- Modal content -->
     <div class="modal-content">
       <div class="modal-header">
-        <h2>{{ heroName }}</h2>
+        <h2>{{ name }}</h2>
       </div>
       <div class="modal-body">
         <ul>
@@ -30,7 +30,7 @@ const heroAlignment = ref(props.alignment)
         </ul>
       </div>
       <div class="modal-footer">
-        <h3>Alignment: {{ heroAlignment }}</h3>
+        <h3>Alignment: {{ alignment }}</h3>
       </div>
     </div>
   </div>

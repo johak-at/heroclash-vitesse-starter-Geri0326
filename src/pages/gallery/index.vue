@@ -1,82 +1,49 @@
 <script setup>
-const hero = ref({
-  appearance: {
-    eyeColor: 'Yellow',
-    gender: 'Male',
-    hairColor: 'No Hair',
-    height: [
-      '6\'8',
-      '203 cm',
-    ],
-    race: 'Human',
-    weight: [
-      '980 lb',
-      '441 kg',
-    ],
-  },
-  biography: {
-    aliases: [
-      'Rick Jones',
-    ],
-    alignment: 'good',
-    alterEgos: 'No alter egos found.',
-    firstAppearance: 'Hulk Vol 2 #2 (April, 2008) (as A-Bomb)',
-    fullName: 'Richard Milhouse Jones',
-    placeOfBirth: 'Scarsdale, Arizona',
-    publisher: 'Marvel Comics',
-  },
-  connections: {
-    groupAffiliation: 'Hulk Family; Excelsior (sponsor), Avengers (honorary member); formerly partner of the Hulk, Captain America and Captain Marvel; Teen Brigade; ally of Rom',
-    relatives: 'Marlo Chandler-Jones (wife); Polly (aunt); Mrs. Chandler (mother-in-law); Keith Chandler, Ray Chandler, three unidentified others (brothers-in-law); unidentified father (deceased); Jackie Shorr (alleged mother; unconfirmed)',
-  },
-  id: 1,
-  images: {
-    lg: 'images/lg/1-a-bomb.jpg',
-    md: 'images/md/1-a-bomb.jpg',
-    sm: 'images/sm/1-a-bomb.jpg',
-    xs: 'images/xs/1-a-bomb.jpg',
-  },
-  name: 'A-Bomb',
-  powerstats: {
-    combat: 64,
-    durability: 80,
-    intelligence: 38,
-    power: 24,
-    speed: 17,
-    strength: 100,
-  },
-  slug: '1-a-bomb',
-  work: {
-    base: '-',
-    occupation: 'Musician, adventurer, author; formerly talk show host',
-  },
+const heroCards = ref([])
+const hero = ref('')
+
+onMounted(async () => {
+  let response = await fetch('https://hcpb.seiwald.club/api/collections/heroes/records?perPage=999&page=1')
+
+  let data = await response.json()
+
+  heroCards.value.push(...data.items)
+
+  response = await fetch('https://hcpb.seiwald.club/api/collections/heroes/records?perPage=999&page=2')
+
+  data = await response.json()
+
+  heroCards.value.push(...data.items)
+
+  hero.value = heroCards.value[15].data
 })
 </script>
 
 <template>
-  <img src="heroclash-logo-lang.png" alt="heroclash logo" class="Logo">
-  <H1 class="Number">
+  <img v-if="hero" src="heroclash-logo-lang.png" alt="heroclash logo" class="Logo">
+
+  <H1 v-if="hero" class="Number">
     HERO NR.
   </H1>
-  <HeroCard :hero="hero" />
+  <HeroCard v-if="hero" :hero="hero" />
 </template>
 
 <style>
 .Logo{
   position: absolute;
-  margin-top: -100px;
-  width: 300px;
-  left: 40%;
+  top: 15px;
+  width: 321px;
+  left: 39.58%;
   max-width: 100%;
     height: auto;
     margin-top: 0px;
   }
 .Number{
-  position: fixed;
-  top: 15%;
+  position: absolute;
+  top: 15.5%;
   left: 44%;
   font-family: "action-comics-black";
-  font-size: 1.4rem;
+  font-size: 1.35rem;
   filter: drop-shadow(2px 2px 2px);
     -webkit-text-stroke: 1px #000;
     background: linear-gradient(45deg, #f7a823, #e4003a);
