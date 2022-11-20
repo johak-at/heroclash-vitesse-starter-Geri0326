@@ -70,7 +70,10 @@ div{
    width: 340px;
    height: 490px;
 }
-
+.Logo{
+  
+  cursor: pointer;
+}
 a{
   position: relative;
   left: 40%;
@@ -86,7 +89,6 @@ img{
   max-width: 100%;
     height: auto;
     margin-top: 0px;
-    cursor: pointer;
 }
 .Number{
   display: flex;
