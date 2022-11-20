@@ -36,11 +36,13 @@ function isPositive() {
       <H1 v-if="hero" class="Number">
         HERO NR.
       </H1>
+
       <div class="counter">
         <span class="Arrows" @click="isPositive(), addValue()">&lt;  </span>
-        <input v-model="counter" type="number">
+        <input v-model="counter" type="number" class="counterInput">
         <span class="Arrows" @click="counter++, addValue()">></span>
       </div>
+      <input type="text" placeholder="filter Heroes by Name..." class="HeroFilter">
     </div>
 
     <HeroCard v-if="hero" :hero="hero" class="card" />
@@ -48,6 +50,12 @@ function isPositive() {
 </template>
 
 <style>
+.HeroFilter{
+  border-width: 1px;
+    border-style: solid;
+    border-radius: 0.25rem;
+
+}
 div{
   display: block;
 }
@@ -57,6 +65,10 @@ div{
   grid-gap: 0.25rem;
     gap: 0.25rem;
     flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+   width: 340px;
+   height: 490px;
 }
 
 a{
@@ -102,7 +114,7 @@ input[type="number"] {
   width: 170px;
   height: 60px;
 }
-input{
+.counterInput{
   font-size: 1.75rem;
   font-family: "action-comics-black";
   filter: drop-shadow(2px 2px 2px);

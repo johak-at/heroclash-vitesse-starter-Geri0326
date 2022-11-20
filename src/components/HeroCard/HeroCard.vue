@@ -23,8 +23,9 @@ const showBiography = ref(false)
       grid-template-columns: 1fr 1fr;
       grid-template-rows: 1fr 1fr;
       width: 340px;
-      height: 255px;
+      height: 255.5px;
       border: 1px solid #F3F4F6;
       border-radius: 0.5rem;
+      padding-bottom: 10px;
     }
 </style>
