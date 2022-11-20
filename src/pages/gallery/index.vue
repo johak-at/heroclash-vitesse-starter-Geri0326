@@ -31,30 +31,42 @@ function isPositive() {
 <template>
   <a href="http://127.0.0.1:3333/">
     <img v-if="hero" src="heroclash-logo-lang.png" alt="heroclash logo" class="Logo"></a>
+  <div class="Contents">
+    <div>
+      <H1 v-if="hero" class="Number">
+        HERO NR.
+      </H1>
+      <div class="counter">
+        <span class="Arrows" @click="isPositive(), addValue()">&lt;  </span>
+        <input v-model="counter" type="number">
+        <span class="Arrows" @click="counter++, addValue()">></span>
+      </div>
+    </div>
 
-  <H1 v-if="hero" class="Number">
-    HERO NR.
-  </H1>
-  <div class="counter">
-    <span class="Arrows" @click="isPositive(), addValue()">&lt;  </span>
-    <input v-model="counter" type="number">
-    <span class="Arrows" @click="counter++, addValue()">></span>
+    <HeroCard v-if="hero" :hero="hero" class="card" />
   </div>
-
-  <HeroCard v-if="hero" :hero="hero" class="card" />
 </template>
 
 <style>
-*{
-  box-sizing: border-box;
-    border-width: 0;
-    border-style: solid;
-    border-color: #e5e7eb;
+div{
+  display: block;
 }
+.Contents{
+  display: flex;
+  align-items: center;
+  grid-gap: 0.25rem;
+    gap: 0.25rem;
+    flex-direction: column;
+}
+
 a{
+  position: relative;
+  left: 40%;
   display: flex;
   justify-content: center;
   max-width: 400px;
+  margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
 }
 img{
   display: block;
@@ -63,9 +75,6 @@ img{
     height: auto;
     margin-top: 0px;
     cursor: pointer;
-}
-.Logo{
-
 }
 .Number{
   display: flex;
