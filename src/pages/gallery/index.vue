@@ -71,7 +71,7 @@ div{
    height: 490px;
 }
 .Logo{
-  
+
   cursor: pointer;
 }
 a{
