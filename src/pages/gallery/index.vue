@@ -1,30 +1,17 @@
 <script setup>
+import { useCardsStore } from '~/store/cards'
 const heroCards = ref([])
-const counter = ref(1)
-const hero = ref('')
+const hero = ref(null)
+
+const cardsStore = useCardsStore()
 
 onMounted(async () => {
-  let response = await fetch('https://hcpb.seiwald.club/api/collections/heroes/records?perPage=999&page=1')
-
-  let data = await response.json()
-
-  heroCards.value.push(...data.items)
-
-  response = await fetch('https://hcpb.seiwald.club/api/collections/heroes/records?perPage=999&page=2')
-
-  data = await response.json()
-
-  heroCards.value.push(...data.items)
-
-  addValue()
+  await cardsStore.loadCards()
+  hero.value = cardsStore.heroCards[0].data
 })
-function addValue() {
-  hero.value = heroCards.value[counter.value - 1].data
-}
-
-function isPositive() {
-  if (counter.value !== 1)
-    counter.value--
+function switchHero(newNumber) {
+  if (Number.isInteger(newNumber) && newNumber > 0 && newNumber < heroCards.value.length)
+    hero.value = cardsStore.heroCards[newNumber - 1].data
 }
 </script>
 
@@ -37,15 +24,10 @@ function isPositive() {
         HERO NR.
       </H1>
 
-      <div class="counter">
-        <span class="Arrows" @click="isPositive(), addValue()">&lt;  </span>
-        <input v-model="counter" type="number" class="counterInput">
-        <span class="Arrows" @click="counter++, addValue()">></span>
-      </div>
-      <input type="text" placeholder="filter Heroes by Name..." class="HeroFilter">
-    </div>
+      <HeroSelector @changeHero="switchHero" />
 
-    <HeroCard v-if="hero" :hero="hero" class="card" />
+      <HeroCard v-if="hero" :hero="hero" class="card" />
+    </div>
   </div>
 </template>
 
@@ -89,57 +71,6 @@ img{
   max-width: 100%;
     height: auto;
     margin-top: 0px;
-}
-.Number{
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  font-family: "action-comics-black";
-  font-size: 1.75rem;
-  margin: 0;
-  filter: drop-shadow(2px 2px 2px);
-    -webkit-text-stroke: 1px #000;
-    background: linear-gradient(45deg, #f7a823, #e4003a);
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
-    text-transform: uppercase;
-    transition: all 0.1s ease-in-out;
-}
-.counter{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-input[type="number"] {
-  text-align: center;
-  border: none;
-  width: 170px;
-  height: 60px;
-}
-.counterInput{
-  font-size: 1.75rem;
-  font-family: "action-comics-black";
-  filter: drop-shadow(2px 2px 2px);
-    -webkit-text-stroke: 1px #000;
-    background: linear-gradient(45deg, #f7a823, #e4003a);
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
-    text-transform: uppercase;
-    transition: all 0.1s ease-in-out;
-    text-align: center;
-}
-.Arrows
-  {
-    font-family: "ComicKings";
-    font-size: 3.75rem;
-    filter: drop-shadow(2px 2px 2px);
-    -webkit-text-stroke: 1px #000;
-    background: linear-gradient(45deg, #f7a823, #e4003a);
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
-    text-transform: uppercase;
-    transition: all 0.1s ease-in-out;
-    cursor: pointer;
 }
 </style>
 
