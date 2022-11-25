@@ -10,7 +10,7 @@ onMounted(async () => {
   hero.value = cardsStore.heroCards[0].data
 })
 function switchHero(newNumber) {
-  if (Number.isInteger(newNumber) && newNumber > 0 && newNumber < heroCards.value.length)
+  if (Number.isInteger(newNumber) && newNumber > 0 && newNumber < cardsStore.heroCards.length)
     hero.value = cardsStore.heroCards[newNumber - 1].data
 }
 </script>
